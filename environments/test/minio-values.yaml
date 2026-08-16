@@ -1,0 +1,7 @@
+minio:
+  defaultBuckets: "loki-data,prometheus-data"
+  rootUser: "admin"
+  rootPassword: "admin"
+  persistence:
+    enabled: true
+    size: 10Gi

@@ -1,0 +1,51 @@
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      retention: 2d
+      enableRemoteWriteReceiver: true # Enable Alloy to push metrics via HTTP POST
+  grafana:
+    adminPassword: "admin"
+
+loki:
+  schemaConfig:
+    configs:
+      - from: 2024-01-01
+        store: tsdb
+        object_store: s3
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  storage:
+    type: s3
+    s3:
+      endpoint: http://minio.storage.svc.cluster.local:9000
+      bucketnames: loki-data
+      accessKeyId: admin
+      secretAccessKey: admin 
+      s3ForcePathStyle: true
+      insecure: true
+
+alloy:
+  alloy:
+    configMap:
+      content: |
+        logging {
+          level  = "info"
+          format = "logfmt"
+        }
+
+        prometheus.remote_write "default" {
+          endpoint {
+            url = "http://observability-stack-kube-prom-prometheus.observability.svc.cluster.local:9090/api/v1/write"
+          }
+        }
+
+        discovery.kubernetes "pods" {
+          role = "pod"
+        }
+
+        prometheus.scrape "pod_metrics" {
+          targets    = discovery.kubernetes.pods.targets
+          forward_to = [prometheus.remote_write.default.receiver]
+        }

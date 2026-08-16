@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/mlan-bud/k8s-devops-platform.git'
+    repoURL: 'https://github.com/milan-bud/k8s-test.git'
     path: charts/observability
     targetRevision: main
     helm:

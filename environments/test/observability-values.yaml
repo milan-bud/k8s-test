@@ -1,12 +1,35 @@
 kube-prometheus-stack:
   prometheus:
     prometheusSpec:
-      retention: 2d
-      enableRemoteWriteReceiver: true # Enable Alloy to push metrics via HTTP POST
+      retention: 1d
+      enableRemoteWriteReceiver: true
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "100m"
+        limits:
+          memory: "512Mi"
   grafana:
     adminPassword: "admin"
+    resources:
+      requests:
+        memory: "128Mi"
 
+# Prebacivanje Lokija u iznimno lagani SingleBinary mod
 loki:
+  deploymentMode: SingleBinary
+  singleBinary:
+    replicas: 1
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+  backend:
+    replicas: 0
+  read:
+    replicas: 0
+  write:
+    replicas: 0
   schemaConfig:
     configs:
       - from: 2024-01-01
@@ -28,6 +51,9 @@ loki:
 
 alloy:
   alloy:
+    resources:
+      requests:
+        memory: "128Mi"
     configMap:
       content: |
         logging {

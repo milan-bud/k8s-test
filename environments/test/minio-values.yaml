@@ -11,6 +11,7 @@ rootPassword: "admin"
 
 persistence:
   enabled: true
+  storageClass: "local-path"
   size: 5Gi
 
 minio:

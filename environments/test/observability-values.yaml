@@ -56,12 +56,11 @@ loki:
       insecure: true
 
 alloy:
-  crds:
-    enabled: false
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
   alloy:
-    resources:
-      requests:
-        memory: "128Mi"
     configMap:
       content: |
         logging {
@@ -101,6 +100,9 @@ alloy:
 
         loki.write "local_loki" {
           endpoint {
-            url = "http://loki-gateway.observability.svc.cluster.local:3100/loki/api/v1/push"
+            url = "http://loki-gateway.observability.svc.cluster.local/loki/api/v1/push"
+            headers = {
+              "X-Scope-OrgID" = "anonymous",
+            }
           }
         }

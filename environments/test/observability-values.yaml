@@ -63,6 +63,8 @@ loki:
 
 alloy:
   enabled: true
+  controller:
+    type: daemonset
   rbac:
     create: true
   serviceAccount:

@@ -2,6 +2,7 @@ kube-prometheus-stack:
   crds:
     enabled: false
   prometheus:
+    enabled: true
     prometheusSpec:
       retention: 1d
       enableRemoteWriteReceiver: true
@@ -10,7 +11,7 @@ kube-prometheus-stack:
           memory: "256Mi"
           cpu: "100m"
         limits:
-          memory: "512Mi"
+          memory: "1024Mi"
   grafana:
     crds:
       create: false
@@ -47,10 +48,10 @@ loki:
   storage:
     type: s3
     s3:
-      endpoint: http://minio.storage.svc.cluster.local:9000
+      endpoint: http://minio.observability.svc.cluster.local:9000
       bucketnames: loki-data
       accessKeyId: admin
-      secretAccessKey: admin12345 
+      secretAccessKey: admin12345
       s3ForcePathStyle: true
       insecure: true
 
@@ -70,7 +71,7 @@ alloy:
 
         prometheus.remote_write "default" {
           endpoint {
-            url = "http://observability-stack-kube-prom-prometheus.observability.svc.cluster.local:9090/api/v1/write"
+            url = "http://observability-stack-kube-p-prometheus.observability.svc.cluster.local:9090/api/v1/write"
           }
         }
 

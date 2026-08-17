@@ -1,4 +1,6 @@
 kube-prometheus-stack:
+  crds:
+    enabled: false
   prometheus:
     prometheusSpec:
       retention: 1d
@@ -15,8 +17,9 @@ kube-prometheus-stack:
       requests:
         memory: "128Mi"
 
-# Prebacivanje Lokija u iznimno lagani SingleBinary mod
 loki:
+  crds:
+    enabled: false
   deploymentMode: SingleBinary
   singleBinary:
     replicas: 1
@@ -45,11 +48,13 @@ loki:
       endpoint: http://minio.storage.svc.cluster.local:9000
       bucketnames: loki-data
       accessKeyId: admin
-      secretAccessKey: admin 
+      secretAccessKey: admin12345 
       s3ForcePathStyle: true
       insecure: true
 
 alloy:
+  crds:
+    enabled: false
   alloy:
     resources:
       requests:

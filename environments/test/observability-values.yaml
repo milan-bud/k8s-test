@@ -21,6 +21,12 @@ kube-prometheus-stack:
         memory: "128Mi"
 
 loki:
+  loki-canary:
+    enabled: false
+  promtail:
+    enabled: false
+  logs:
+    enabled: false
   crds:
     enabled: false
   deploymentMode: SingleBinary
@@ -62,6 +68,9 @@ alloy:
   serviceAccount:
     create: true
   alloy:
+    mounts:
+      varlog: true
+      dockercontainers: true
     configMap:
       content: |
         logging {
@@ -95,15 +104,14 @@ alloy:
 
         loki.process "add_labels" {
           stage.cri {}
-
           forward_to = [loki.write.local_loki.receiver]
         }
 
         loki.write "local_loki" {
           endpoint {
-            url = "http://loki-gateway.observability.svc.cluster.local/loki/api/v1/push"
+            url = "http://observability-stack-loki.observability.svc.cluster.local:3100/loki/api/v1/push"
             headers = {
-              "X-Scope-OrgID" = "anonymous",
+              "X-Scope-OrgID" = "anonymous"
             }
           }
         }

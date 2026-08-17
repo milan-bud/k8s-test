@@ -11,24 +11,6 @@ spec:
     repoURL: 'https://github.com/milan-bud/k8s-test.git'
     path: charts/minio
     targetRevision: main
-    helm:
-      valueFiles:
-        - '../../environments/test/minio-values.yaml'
-      valuesObject:
-        minio:
-          primary:
-            resources:
-              requests:
-                memory: "256Mi"
-                cpu: "100m"
-              limits:
-                memory: "512Mi"
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "100m"
-            limits:
-              memory: "512Mi"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: storage

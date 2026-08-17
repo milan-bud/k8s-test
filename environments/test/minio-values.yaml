@@ -1,25 +1,24 @@
-defaultBuckets: "loki-data,prometheus-data"
-rootUser: "admin"
-rootPassword: "admin"
+minio:
+  defaultBuckets: "loki-data,prometheus-data"
+  rootUser: "admin"
+  rootPassword: "admin"
 
-persistence:
-  enabled: true
-  storageClass: "standard"
-  size: 5Gi
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    size: 5Gi
 
-# Bitnami MinIO chart primary block
-primary:
+  primary:
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+      limits:
+        memory: "512Mi"
+
   resources:
     requests:
       memory: "256Mi"
       cpu: "100m"
     limits:
       memory: "512Mi"
-
-# Standalone chart block fallback
-resources:
-  requests:
-    memory: "256Mi"
-    cpu: "100m"
-  limits:
-    memory: "512Mi"

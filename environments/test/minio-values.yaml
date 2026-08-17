@@ -1,7 +1,7 @@
 minio:
   defaultBuckets: "loki-data,prometheus-data"
   rootUser: "admin"
-  rootPassword: "admin"
+  rootPassword: "admin12345"
 
   persistence:
     enabled: true

@@ -25,7 +25,7 @@ spec:
             - name: MINIO_ROOT_USER
               value: "admin"
             - name: MINIO_ROOT_PASSWORD
-              value: "admin"
+              value: "admin12345"
           ports:
             - containerPort: 9000
               name: api

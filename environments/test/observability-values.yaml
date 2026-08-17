@@ -12,6 +12,8 @@ kube-prometheus-stack:
         limits:
           memory: "512Mi"
   grafana:
+    crds:
+      create: false
     adminPassword: "admin12345"
     resources:
       requests:

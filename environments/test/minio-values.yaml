@@ -3,17 +3,11 @@ rootUser: "admin"
 rootPassword: "admin"
 
 persistence:
-  enabled: 
+  enabled: true
   storageClass: "standard"
   size: 5Gi
 
-resources:
-  requests:
-    memory: "256Mi"
-    cpu: "100m"
-  limits:
-    memory: "512Mi"
-
+# Bitnami MinIO chart primary block
 primary:
   resources:
     requests:
@@ -22,10 +16,10 @@ primary:
     limits:
       memory: "512Mi"
 
-minio:
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "512Mi"
+# Standalone chart block fallback
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"

@@ -1,4 +1,4 @@
 apiVersion: v2
 name: minio-wrapper
 version: 1.0.0
-description: Direct MinIO Deploy (hint: value issues with limits under 16Gi)  
+description: Direct MinIO Deployment for Test Environment

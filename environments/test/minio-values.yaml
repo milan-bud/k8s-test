@@ -1,3 +1,12 @@
+defaultBuckets: "loki-data,prometheus-data"
+rootUser: "admin"
+rootPassword: "admin"
+
+persistence:
+  enabled: 
+  storageClass: "standard"
+  size: 5Gi
+
 resources:
   requests:
     memory: "256Mi"
@@ -5,12 +14,13 @@ resources:
   limits:
     memory: "512Mi"
 
-defaultBuckets: "loki-data,prometheus-data"
-rootUser: "admin"
-rootPassword: "admin"
-
-persistence:
-  enabled: false 
+primary:
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
 
 minio:
   resources:

@@ -3,18 +3,15 @@ kind: Application
 metadata:
   name: paperless-ngx
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: charts/paperless-ngx
-    repoURL: https://github.com/milan-bud/k8s-test.git 
+    repoURL: https://github.com/milan-bud/YOUR_REPO.git 
     targetRevision: main
+    path: charts/paperless-ngx
     helm:
-      version: v3
       valueFiles:
-        - ../../environments/test/paperless-ngx-values.yaml
+        - '../../environments/test/paperless-ngx-values.yaml'
   destination:
     server: https://kubernetes.default.svc
     namespace: paperless-ngx
@@ -22,5 +19,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true

@@ -1,22 +1,17 @@
-postgresql:
-  enabled: false
+paperless-ngx:
+  redis:
+    enabled: true
 
-redis:
-  enabled: true
+  postgresql:
+    enabled: false
 
-env:
-  PAPERLESS_DBENGINE: "sqlite"
-  PAPERLESS_REDIS: "redis://paperless-ngx-redis-master:6379"
-  PAPERLESS_URL: "http://localhost:8082"
-  PAPERLESS_ADMIN_USER: "admin"
-  PAPERLESS_ADMIN_PASSWORD: "Admin12345"
-
-controllers:
-  main:
-    containers:
-      main:
-        env:
-          PAPERLESS_DBENGINE: "sqlite"
-          PAPERLESS_REDIS: "redis://paperless-ngx-redis-master:6379"
-          PAPERLESS_ADMIN_USER: "admin"
-          PAPERLESS_ADMIN_PASSWORD: "Admin12345"
+  controllers:
+    main:
+      containers:
+        main:
+          env:
+            PAPERLESS_DBENGINE: "sqlite"
+            PAPERLESS_REDIS: "redis://paperless-ngx-redis-master:6379"
+            PAPERLESS_URL: "http://localhost:8082"
+            PAPERLESS_ADMIN_USER: "admin"
+            PAPERLESS_ADMIN_PASSWORD: "AdminPassword123!"

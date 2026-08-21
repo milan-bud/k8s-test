@@ -1,10 +1,10 @@
 apiVersion: v2
 name: paperless-ngx
-description: Paperless-ngx Document Management
+description: Paperless-ngx Helm Chart
 type: application
 version: 0.1.0
 appVersion: "2.5.0"
 dependencies:
   - name: paperless-ngx
-    version: 0.0.5        # Updated dependency version
-    repository: https://rtomik.github.io/helm-charts
+    version: 16.0.0
+    repository: https://charts.gabe565.com

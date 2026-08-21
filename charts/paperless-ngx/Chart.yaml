@@ -1,0 +1,10 @@
+apiVersion: v2
+name: paperless-ngx
+description: Paperless-ngx Document Management
+type: application
+version: 0.1.0
+appVersion: "2.5.0"
+dependencies:
+  - name: paperless-ngx
+    version: 0.2.1
+    repository: https://bkuhl.github.io/paperless-ngx/

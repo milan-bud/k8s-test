@@ -1,0 +1,9 @@
+nextcloud:
+  nextcloud:
+    host: "nextcloud.local"
+    password: "Admin12345"
+  persistence:
+    enabled: true
+    size: 8Gi
+  postgresql:
+    enabled: false

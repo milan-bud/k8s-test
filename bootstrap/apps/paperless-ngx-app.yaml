@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: paperless-ngx
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: charts/paperless-ngx
+    repoURL: https://github.com/milan-bud/k8s-test.git
+    targetRevision: main
+    helm:
+      version: v3
+      valueFiles:
+        - ../../environments/test/paperless-ngx-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: paperless-ngx
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

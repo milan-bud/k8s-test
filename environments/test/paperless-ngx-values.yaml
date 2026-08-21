@@ -1,0 +1,15 @@
+paperless-ngx:
+  ingress:
+    enabled: false
+  user:
+    superuser:
+      username: admin
+      email: admin@local.domain
+      password: Admin12345
+  persistence:
+    data:
+      enabled: true
+      size: 5Gi
+    media:
+      enabled: true
+      size: 10Gi

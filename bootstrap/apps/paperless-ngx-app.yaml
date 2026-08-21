@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: charts/paperless-ngx
-    repoURL: https://github.com/milan-bud/k8s-test.git
+    repoURL: https://github.com/milan-bud/k8s-test.git 
     targetRevision: main
     helm:
       version: v3

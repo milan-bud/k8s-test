@@ -2,11 +2,28 @@ nextcloud:
   nextcloud:
     host: "nextcloud.local"
     password: "Admin12345"
-    extraEnvVars:
+    # Pass environment variables correctly using the chart's extraEnv structure
+    extraEnv:
       - name: NEXTCLOUD_TRUSTED_DOMAINS
-        value: "localhost 127.0.0.1 10.203.212.203"
+        value: "* localhost 127.0.0.1"
+  
+  # Inject a custom php configuration snippet directly into config.php
+  configs:
+    proxy.config.php: |-
+      <?php
+      $CONFIG = array (
+        'trusted_domains' => 
+        array (
+          0 => 'localhost:8081',
+          1 => '127.0.0.1:8081',
+          2 => 'nextcloud.local',
+          3 => '*',
+        ),
+      );
+
   persistence:
     enabled: true
     size: 8Gi
+
   postgresql:
     enabled: false

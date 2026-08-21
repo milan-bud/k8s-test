@@ -1,18 +1,15 @@
 paperless-ngx:
-  # Enable the built-in Redis subchart dependency
+  # Disable postgresql and use built-in SQLite for local testing
+  postgresql:
+    enabled: false
+
+  # Enable the built-in redis dependency
   redis:
     enabled: true
 
-  # Override environment variables for the main container
-  controllers:
-    main:
-      containers:
-        main:
-          env:
-            # Disable PostgreSQL search and use built-in SQLite
-            PAPERLESS_DBENGINE: sqlite
-            # Point to the Redis service deployed by the chart in this namespace
-            PAPERLESS_REDIS: redis://paperless-ngx-redis:6379
-            PAPERLESS_URL: http://localhost:8082
-            PAPERLESS_ADMIN_USER: admin
-            PAPERLESS_ADMIN_PASSWORD: Admin12345
+  # Pass environment overrides directly to the container
+  env:
+    PAPERLESS_DBENGINE: "sqlite"
+    PAPERLESS_REDIS: "redis://paperless-ngx-redis-master:6379"
+    PAPERLESS_ADMIN_USER: "admin"
+    PAPERLESS_ADMIN_PASSWORD: "Admin12345"

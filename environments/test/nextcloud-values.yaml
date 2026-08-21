@@ -2,6 +2,9 @@ nextcloud:
   nextcloud:
     host: "nextcloud.local"
     password: "Admin12345"
+    extraEnvVars:
+      - name: NEXTCLOUD_TRUSTED_DOMAINS
+        value: "localhost 127.0.0.1 10.203.212.203"
   persistence:
     enabled: true
     size: 8Gi

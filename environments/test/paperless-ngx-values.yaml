@@ -1,15 +1,17 @@
 paperless-ngx:
-  ingress:
-    enabled: false
+  # Enable built-in database & redis subcharts
+  postgresql:
+    enabled: true
+  redis:
+    enabled: true
+
+  # Point paperless to the local namespace services if overridden
+  env:
+    PAPERLESS_REDIS: "redis://paperless-ngx-redis:6379"
+    PAPERLESS_DBHOST: "paperless-ngx-postgresql"
+
   user:
     superuser:
       username: admin
       email: admin@local.domain
       password: Admin12345
-  persistence:
-    data:
-      enabled: true
-      size: 5Gi
-    media:
-      enabled: true
-      size: 10Gi

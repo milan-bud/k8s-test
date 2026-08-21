@@ -6,5 +6,5 @@ version: 0.1.0
 appVersion: "28.0.0"
 dependencies:
   - name: nextcloud
-    version: 6.6.0
+    version: 8.8.2        # Valid active chart version
     repository: https://nextcloud.github.io/helm/
